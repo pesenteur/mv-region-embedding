@@ -1,7 +1,8 @@
 from layers import *
 from utils import *
 from inits import *
-
+import tensorflow.compat.v1 as tf
+from tensorflow.keras.layers import Dense
 flags = tf.app.flags
 FLAGS = flags.FLAGS
 
@@ -170,8 +171,8 @@ class MVURE(Model):
         with tf.name_scope("SELF-ATTN-"+name):
             outs = []
             for i in range(4):
-                Q = tf.layers.dense(views, 48)
-                K = tf.layers.dense(views, 48)
+                Q = Dense(48)(views)
+                K = Dense(48)(views)
                 V = views
                 attention = tf.matmul(Q, K, transpose_b=True)
                 d_k = tf.cast(tf.shape(K)[-1], dtype=tf.float32)
