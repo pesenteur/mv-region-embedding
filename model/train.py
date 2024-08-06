@@ -2,12 +2,12 @@ from __future__ import division
 from __future__ import print_function
 
 import numpy as np
-import tensorflow as tf
+
 
 from utils import *
 from models import *
 from tasks import predict_crime, lu_classify
-
+import tensorflow.compat.v1 as tf
 # Set random seed
 seed = 1
 np.random.seed(seed)
@@ -53,7 +53,7 @@ data["s_bias"] = adj_to_bias(s_adj_sp, [item_num], 1)
 data["t_bias"] = adj_to_bias(t_adj_sp, [item_num], 1)
 data["poi_bias"] = adj_to_bias(poi_adj_sp, [item_num], 1)
 data["chk_bias"] = adj_to_bias(chk_adj_sp, [item_num], 1)
-
+tf.disable_eager_execution()
 # Define placeholders
 placeholders = {
     'mob_adj': tf.placeholder(tf.float32, shape=mob_shape),
