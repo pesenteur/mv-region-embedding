@@ -1,5 +1,5 @@
 from inits import *
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 flags = tf.app.flags
 FLAGS = flags.FLAGS
@@ -184,7 +184,7 @@ class GraphAttention(Layer):
             self.vars['weights'] = glorot([input_dim, output_dim], name='weights')
             self.vars['a_1'] = glorot([output_dim, 1], name='weights')
             self.vars['a_2'] = glorot([output_dim, 1], name='weights')
-
+            self.vars['bias'] = uniform([output_dim], name='weights')
         if self.logging:
             self._log_vars()
 
@@ -207,5 +207,5 @@ class GraphAttention(Layer):
             seq_fts = tf.nn.dropout(seq_fts, 1.0 - self.input_dropout)
 
         vals = tf.matmul(coefs, seq_fts)
-        ret = tf.contrib.layers.bias_add(vals)
+        ret = tf.nn.bias_add(vals, self.vars['bias'])
         return self.act(ret)
