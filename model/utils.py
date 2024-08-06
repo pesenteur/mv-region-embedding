@@ -2,7 +2,7 @@ import numpy as np
 import scipy.io as sio
 import pandas as pd
 import scipy.sparse as sp
-from scipy.sparse.linalg.eigen.arpack import eigsh
+
 import sys
 
 from sklearn.preprocessing import StandardScaler
