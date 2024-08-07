@@ -6,7 +6,7 @@ import numpy as np
 
 from utils import *
 from models import *
-from tasks import predict_crime, lu_classify
+from tasks import predict_crime,predict_check_in,predict_popularity, lu_classify
 import tensorflow.compat.v1 as tf
 # Set random seed
 seed = 1
