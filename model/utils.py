@@ -63,7 +63,7 @@ def load_data():
         chk_adj_sp[i, np.argsort(chk_adj_sp[i, :])[:-k]] = 0
 
 
-    feature = np.random.uniform(-1, 1, size=(180, 250))
+    feature = np.random.uniform(-1, 1, size=(69, 250))
     feature = feature[np.newaxis]
 
     out = {

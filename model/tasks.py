@@ -18,8 +18,8 @@ warnings.filterwarnings("ignore")
 
 crime = np.load("../data/crime_counts.npy")[:, 0]
 cd = json.load(open("../data/mh_cd.json"))
-cd_labels = np.zeros((180))
-for i in range(180):
+cd_labels = np.zeros((69))
+for i in range(69):
     cd_labels[i] = cd[str(i)]
 
 def regression(X_train, y_train, X_test, alpha):
