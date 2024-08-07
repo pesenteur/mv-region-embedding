@@ -98,6 +98,8 @@ for epoch in range(FLAGS.epochs):
         print("Train loss {:.3f} at epoch {}.".format(outs[1], epoch))
 
 predict_crime(output)
+predict_popularity(output)
+predict_check_in(output)
 lu_classify(output)
 
 model.save(sess)

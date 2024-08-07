@@ -17,6 +17,8 @@ import warnings
 warnings.filterwarnings("ignore")
 
 crime = np.load("../data/crime_counts.npy")[:, 0]
+popularity = np.load("../data/popularity.npy",allow_pickle=True)[:]
+check_in = np.load("../data/check_in.npy",allow_pickle=True)[:]
 cd = json.load(open("../data/mh_cd.json"))
 cd_labels = np.zeros((69))
 for i in range(69):
@@ -53,6 +55,23 @@ def compute_metrics(y_pred, y_test):
 
 def predict_crime(emb):
     y_pred, y_test = kf_predict(emb, crime)
+    mae, rmse, r2 = compute_metrics(y_pred, y_test)
+
+    print("MAE: ", mae)
+    print("RMSE: ", rmse)
+    print("R2: ", r2)
+    return mae, rmse, r2
+
+def predict_popularity(emb):
+    y_pred, y_test = kf_predict(emb, popularity)
+    mae, rmse, r2 = compute_metrics(y_pred, y_test)
+
+    print("MAE: ", mae)
+    print("RMSE: ", rmse)
+    print("R2: ", r2)
+    return mae, rmse, r2
+def predict_check_in(emb):
+    y_pred, y_test = kf_predict(emb, check_in)
     mae, rmse, r2 = compute_metrics(y_pred, y_test)
 
     print("MAE: ", mae)
